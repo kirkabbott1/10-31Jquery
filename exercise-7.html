@@ -17,14 +17,13 @@
     $(function () {
       $('#add-button').click(function () {
         var text = $('#description').val();
-        $('#todo-list').append('<li>'+ text + '</li>' + '<button id="remove-button">' + Remove Task + '</button>');
+        $('#todo-list').append('<li>'+ text  + '<button id="remove-button">' + 'Remove Task' + '</button>'+ '</li>');
       })
-      $('#remove-button').click(function () {
-        $('#todo-list').text(function () {
-          $(this).remove();
-        });
-      });
 
+      $('#todo-list').on('click', '#remove-button', function(e) {
+        e.preventDefault();
+        $(this).parent('li').remove();
+      });
     });
     </script>
     <style>
