@@ -14,15 +14,27 @@
     3. the ability to delete a task
     4. the ability to edit an existing task
     */
-    $(function () {
-      $('#add-button').click(function () {
+    $(function() {
+      $('#add-button').click(function() {
         var text = $('#description').val();
-        $('#todo-list').append('<li>'+ text  + '<button id="remove-button">' + 'Remove Task' + '</button>'+ '</li>');
+        $('#todo-list').append('<li>'+ text  + '<input type="checkbox" class="checkOut" />' + '<button id="remove-button">' + 'Remove Task' + '</button>'+ '</li>');
       })
 
-      $('#todo-list').on('click', '#remove-button', function(e) {
-        e.preventDefault();
+      $('#todo-list').on('click', '#remove-button', function() {
         $(this).parent('li').remove();
+      });
+      //
+      $('#todo-list').on('click', '.checkOut', function(){
+        console.log("checking checkbox");
+
+          if ($(this).is(':checked')) {
+            $(this).parent('li').wrap('<s></s>');
+            console.log('Checked');
+          }
+          else {
+            $(this).parent('li').unwrap('s');
+            console.log('unChecked');
+          }
       });
     });
     </script>
@@ -39,7 +51,7 @@
   </head>
   <body>
     <div id="wrapper">
-      <input id="description" type="text" name="description">
+      <input id="description" type="text" name="description"><input type="checkbox" class="checkOut" />
       <button id="add-button">Add Task</button>
 
       <ul id="todo-list">
